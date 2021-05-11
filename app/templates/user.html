@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+    {% if name=="tao" %}
+        <h1 style="color:red">Hello, {{name}}</h1>
+    {% elif name=="tao2" %}
+        <h1 style="color:green">Hello, 2, {{name}}</h1>
+    {% else %}
+        <h1> Hello Stranger!</h1>
+    {% endif %}
+<!--循环语句-->
+    <ul>
+        {% for item in items %}
+        <li> {{ item }} </li>
+      {% endfor %}
+    </ul>
+
+<!--定义宏-->
+{% macro render_item(item) %}
+	<li> {{ item }} </li>
+{% endmacro %}
+
+<!--// 使用宏-->
+<ul>
+	{% for item in items %}
+  	    {{ render_item(item) }}
+    {% endfor %}
+</ul>
+
+
+<!--导入宏-->
+    {% import "macros.html" as macros %}
+    <ul>
+        {% for item in items %}
+        {{ macros.render_item(item) }}
+      {% endfor %}
+    </ul>
+</body>
+</html>
