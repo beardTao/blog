@@ -17,9 +17,10 @@
  <li><a href="/">Home</a></li>
  </ul>
  <ul class="nav navbar-nav navbar-right">
-     <li><a href="{{ url_for('auth.login') }}">登录</a></li>
   {% if current_user.is_authenticated %}
     <li><a href="{{ url_for('auth.logout') }}">登出</a></li>
+   {% else %}
+       <li><a href="{{ url_for('auth.login') }}">登录</a></li>
   {% endif %}
  </ul>
  </div>

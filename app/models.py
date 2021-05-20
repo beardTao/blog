@@ -1,7 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import login_manager
-db = SQLAlchemy()
+# 若直接从flask-sqlalchemy创建实例，则为一个空实例
+from . import db
+from flask_login import UserMixin
 
 
 class Role(db.Model):
@@ -11,7 +12,7 @@ class Role(db.Model):
     users = db.relationship('User', backref='role')
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
